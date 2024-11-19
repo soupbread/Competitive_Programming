@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Ccc01j2 {
+    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
@@ -18,5 +19,6 @@ public class Ccc01j2 {
         if(!possible){
             System.out.println("No such integer exists.");
         }
+        sc.close();
     }
 }
