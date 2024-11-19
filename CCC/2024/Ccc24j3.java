@@ -1,7 +1,7 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class J3 {
+public class Ccc24j3 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     
     public static void main(String[] args) throws IOException{
