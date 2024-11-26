@@ -5,6 +5,7 @@ public class Sac22cc5jp1 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer in;
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) throws IOException {
         int x=readInt(), t=readInt(), w=readInt();
         System.out.println(w-x);
