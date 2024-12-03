@@ -29,3 +29,5 @@ int main(){
     printf("%i\n", maxe);
     return 0;
 }
+
+// alt solution (also O(n)): brute force all possibilities
