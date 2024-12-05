@@ -30,4 +30,4 @@ int main(){
     return 0;
 }
 
-// alt solution (also O(n)): brute force all possibilities
+// alt solution (also O(n)): brute force all possibilities (sliding window)
