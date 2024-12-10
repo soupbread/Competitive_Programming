@@ -1,11 +1,17 @@
 // Initial attempt 2024/11/30
 // Second attempt 2024/12/09
 // AC 2024/12/09
+// Note: alternate solution learned from DMOJ submission https://dmoj.ca/src/5615632
+// to go through each index in the input array as the midpoint
+// and computing all possible subarrays with that index as the midpoint
+// then updating the answers array with the smallest value
+// found through doing those calculations for each length
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main(){
-    int n, r, minv=INT_MAX;
+    int n, r, minv;
     scanf("%i", &n);
     vector<int> m(n);
     vector<vector<int>> d(n, vector<int>(n, 0));
