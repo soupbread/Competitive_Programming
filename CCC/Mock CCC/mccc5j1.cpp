@@ -1,4 +1,4 @@
-/// AC 2025/1/1
+/// AC 2025/01/01
 #include <bits/stdc++.h>
 using namespace std;
 
