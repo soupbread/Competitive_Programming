@@ -16,7 +16,7 @@ bool is_monkey(string word){
         return is_monkey(word.substr(1));
     }
     else if(word[0]=='B'){
-        if(word.find('S')!=-1){
+        if(int(word.find('S'))!=-1){
             bool y = is_monkey(word.substr(1, word.find('S')-1));
             if(y && word.find('S')!=word.length()-1){ // here
                 return is_monkey(word.substr(word.find('S')+1));
