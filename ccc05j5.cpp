@@ -1,50 +1,45 @@
 // First attempt 2025/01/06
+// Continued 2025/01/07
+// Problems: BBANANASS, BBBBASSSS (multiple pairs of B and S, since currently it relies on index of first S...)
 #include <bits/stdc++.h>
 using namespace std;
+
+bool is_monkey(string word){
+    if(word=="A") return true;
+    if(word[0]=='A'){
+        if(word[1]=='N'){
+            if(word.length()==2) return false;
+            return is_monkey(word.substr(2));
+        }
+    }
+    else if(word[0]=='N'){
+        return is_monkey(word.substr(1));
+    }
+    else if(word[0]=='B'){
+        if(word.find('S')!=-1){
+            bool y = is_monkey(word.substr(1, word.find('S')-1));
+            if(y && word.find('S')!=word.length()-1){ // here
+                return is_monkey(word.substr(word.find('S')+1));
+            }
+            else if(!y){
+                return false;
+            }
+            else if(word.find('S')==word.length()-1){
+                return true;
+            }
+        }
+        else return false;
+    }
+    return false;
+}
 
 int main(){
     while(true){
         string word;
-        bool mword = true;
         cin >> word;
         if(word=="X") break;
-        if(word=="A"){
-            printf("YES\n");
-            continue;
-        }
-        else if(word.length()==1 && word!="A"){
-            mword = false;
-            printf("NO\n");
-            continue;
-        }
-        else{
-            char prev='N';
-            for(long unsigned int i=0; i<word.length(); i++){
-                if(i==0 && word[0]=='B'){
-                    if(word[word.length()-1]!='S'){
-                        mword = false;
-                        printf("NO\n");
-                        break;
-                    }
-                }
-                else if(word[i]=='B'){
-                    if(word[i-1]!='N' && word[i-1]!='S'){
-                        mword = false;
-                        printf("NO\n");
-                    }
-                }
-                else{
-                    if(word[i]!='S' && ((prev=='N' && word[i]!='A') || (prev=='A' && word[i]!='N'))){
-                        mword = false;
-                        printf("NO\n");
-                        break;
-                    }
-                    if(prev=='N') prev = 'A';
-                    else prev = 'N';
-                }
-            }
-            if(mword) printf("YES\n");
-        }
+        if(is_monkey(word)) printf("YES\n");
+        else printf("NO\n");
     }
     return 0;
 }
