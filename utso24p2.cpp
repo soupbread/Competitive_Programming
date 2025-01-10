@@ -1,61 +1,53 @@
-// First attempt 2025/01/05
 #include <bits/stdc++.h>
 using namespace std;
 
 int main(){
-    long long n, k, ans=0, back=false;
-    vector<int> gifts;
+    int n, k, pos_ind = 0, neg_ind = 0, ans=0;
+    vector<int> pos_gifts, neg_gifts;
     cin >> n >> k;
+    int moves = k;
+
     for(int i=0; i<n; i++){
-        int g;
-        cin >> g;
-        gifts.push_back(g);
+        int h;
+        cin >> h;
+        if(h>0) pos_gifts.push_back(h);
+        else if(h<0) neg_gifts.push_back(h);
     }
-    sort(gifts.begin(), gifts.end(), greater<>());
-    for(int i=0; i<n; i++){
-        cout << gifts[i] << " ";
-    }
-    if(k==1){
-        for(int i=0; i<n; i++){
-            if(gifts[i]>0){
-                ans+=gifts[i];
-                break;
+
+    sort(pos_gifts.begin(), pos_gifts.end(), greater<>());
+    sort(neg_gifts.begin(), neg_gifts.end());
+
+    while(moves>0){
+        int pos_1 = 0, pos_2 = 0, neg = 0;
+
+        if(moves==1){
+            if(pos_gifts.size()>0 && pos_ind<int(pos_gifts.size())){
+                ans+=pos_gifts[pos_ind];
+            }
+            break;
+        }
+        else{
+            if(pos_gifts.size()>0 && pos_ind<int(pos_gifts.size())-1){
+                pos_1 = pos_gifts[pos_ind], pos_2 =  pos_gifts[pos_ind+1];
+            }
+            else if(pos_gifts.size()>0 && pos_ind<=int(pos_gifts.size())-1){
+                pos_1 = pos_gifts[pos_ind];
+            }
+            if(neg_gifts.size()>0 && neg_ind<int(neg_gifts.size())){
+                neg = abs(neg_gifts[neg_ind]);
+            }
+            if(pos_1 + pos_2 > neg){
+                moves--;
+                ans+=pos_1;
+                pos_ind++;
+            }
+            else{
+                moves-=2;
+                ans+=neg;
+                neg_ind++;
             }
         }
     }
-    else if(n==1) ans+=abs(gifts[0]);
-    else{
-        for(int i=0; i<n-1; i+=2){
-            if(gifts[i]>0 && gifts[i+1]>0 && gifts[i]+gifts[i+1]>=abs(gifts[n-1])){
-                ans+=gifts[i]+gifts[i+1];
-                k-=2;
-            }
-            else if(gifts[i]>0 && gifts[i+1]>0 && gifts[i]+gifts[i+1]<abs(gifts[n-1])){
-                k-=2;
-                back=true;
-                ans+=abs(gifts[n-1]);
-                break;
-            }
-            else if(gifts[i]<0 || gifts[i+1]<0){
-                if(gifts[i]<0){
-                    back=true;
-                    break;
-                }
-                if(gifts[i+1]<0){
-                    if(gifts[i]+gifts[i+1]>abs(gifts[n-1])){
-                        k-=2;
-                        ans+=gifts[i]+gifts[i+1];
-                        back=true;
-                        break;
-                    }
-                    back=true;
-                }
-            }
-        }
-    }
-    // if(back && k>0){
-        
-    // }
     cout << ans << endl;
     return 0;
 }
