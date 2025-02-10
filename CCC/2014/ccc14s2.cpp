@@ -19,11 +19,8 @@ int main(){
         auto it1 = pairs.find(names1[i]);
         auto it2 = pairs.find(names2[i]);
 
-        if(it1==pairs.end() && it2==pairs.end()){
-            pairs[names1[i]] = names2[i];
-            pairs[names2[i]] = names1[i];
-        }
-
+        if(it1==pairs.end() && it2==pairs.end()) pairs[names1[i]] = names2[i];
+        
         else if((it1!=pairs.end() && it1->second!=names2[i]) || 
                 (it2!=pairs.end() && it2->second!=names1[i])){
             cout << "bad" << endl;
