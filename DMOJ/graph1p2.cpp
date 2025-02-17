@@ -7,13 +7,8 @@ int visited[101], d[101];
 int main(){
     int n;
     cin >> n;
-    if(n==1){
-        cout << 0 << endl;
-        return 0;
-    }
     vector<vector<int>> adj(n+1);
-    queue<int> q;
-    q.emplace(1);
+    queue<int> q; q.emplace(1);
     visited[1] = 1, d[1]=0;
     for(int i=1; i<=n; i++){
         for(int j=1; j<=n; j++){
